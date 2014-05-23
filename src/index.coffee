@@ -16,7 +16,7 @@ module.exports = class ES6ModuleTranspiler
     if @match.test(params.path)
       console.log('---> es6-compiling:', params.path) if @debug
       compiler = new Compiler params.data, params.string
-      return callback null, {data: @wrapper? compiler[@wrapper]() or compiler.toCJS() }
+      return callback null, {data: ( if @wrapper then compiler[@wrapper]() else compiler.toCJS() ) }
 
     else
       console.log('---> es6-ignoring:', params.path) if @debug
