@@ -8,7 +8,7 @@ module.exports = class ES6ModuleTranspiler
   constructor: (config) ->
     @debug = config?.es6ModuleTranspiler?.debug? or no
     @match = new RegExp(config?.es6ModuleTranspiler?.match or /^app/)
-    @wrapper = config?.modules?.wrapper? 'to'+config.modules.wrapper.toUpperCase() or no
+    @wrapper = if config?.modules?.wrapper? then 'to'+config.modules.wrapper.toUpperCase() else no
 
     console.log '---> es6-matching:', @match if @debug
 
